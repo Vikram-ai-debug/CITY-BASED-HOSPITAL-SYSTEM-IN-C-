@@ -1,0 +1,114 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// ANSI escape codes for colors and styles
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define CYAN    "\033[36m"
+#define BOLD    "\033[1m"
+
+// Function to display hospitals of a specific city
+void displayHospitals(string city, string hospitals[5][3]) {
+    cout << BOLD << CYAN << "\n--- Top 5 Hospitals in " << city << " ---\n" << RESET;
+    for (int i = 0; i < 5; i++) {
+        cout << GREEN << i + 1 << ". " << RESET << BOLD << hospitals[i][0] << RESET << "\n";
+        cout << YELLOW << "   Contact: " << RESET << hospitals[i][1] << "\n";
+        cout << BLUE << "   Address: " << RESET << hospitals[i][2] << "\n\n";
+    }
+}
+
+int main() {
+    // Data for hospitals in Hyderabad, Karachi, Lahore, Islamabad, and Rawalpindi
+    
+        // Adding hospital details for Hyderabad
+    string hyderabadHospitals[5][3] = {
+        {"Liaquat University Hospital", "022-123 456 789", "Jamshoro Road, Hyderabad"},
+        {"Indus Hospital", "022-987 654 321", "Qasimabad, Hyderabad"},
+        {"Agha Khan Hospital", "022-111 222 333", "Latifabad, Hyderabad"},
+        {"Civil Hospital", "022-444 555 666", "Hyderabad City"},
+        {"Sina Hospital", "022-777 888 999", "Autobahn Road, Hyderabad"}
+    };
+
+    // Adding hospital details for Karachi
+    string karachiHospitals[5][3] = {
+        {"Aga Khan University Hospital", "021-111 911 911", "Stadium Road, Karachi"},
+        {"Liaquat National Hospital", "021-111 456 456", "National Stadium Road, Karachi"},
+        {"Jinnah Postgraduate Medical Centre", "021-992 013 00", "Rafiqui Shaheed Road, Karachi"},
+        {"Ziauddin Hospital", "021-366 482 37", "North Nazimabad, Karachi"},
+        {"South City Hospital", "021-111 111 245", "DHA Phase 2, Karachi"}
+    };
+
+    // Adding hospital details for Lahore
+    string lahoreHospitals[5][3] = {
+        {"Shaukat Khanum Memorial Cancer Hospital", "042-359 050 00", "Johar Town, Lahore"},
+        {"Services Hospital", "042-992 111 11", "Jail Road, Lahore"},
+        {"Mayo Hospital", "042-992 111 11", "Lahore"},
+        {"Punjab Institute of Cardiology", "042-992 111 11", "Lahore"},
+        {"Ganga Ram Hospital", "042-992 111 11", "Lahore"}
+    };
+
+    // Adding hospital details for Islamabad
+    string islamabadHospitals[5][3] = {
+        {"Pakistan Institute of Medical Sciences (PIMS)", "051-926 1030", "G-8/3, Islamabad"},
+        {"Shifa International Hospital", "051-844 6110", "H-8/4, Islamabad"},
+        {"Holy Family Hospital", "051-929 0000", "I-8, Islamabad"},
+        {"Capital Hospital", "051-925 0505", "G-5, Islamabad"},
+        {"Federal General Hospital", "051-925 0747", "G-8/3, Islamabad"}
+    };
+
+    // Adding hospital details for Rawalpindi
+    string rawalpindiHospitals[5][3] = {
+        {"Benazir Bhutto Hospital", "051-929 0000", "Murree Road, Rawalpindi"},
+        {"Rawalpindi Institute of Cardiology", "051-511 0801", "Morgah, Rawalpindi"},
+        {"Holy Family Hospital", "051-929 0000", "I-8, Rawalpindi"},
+        {"Military Hospital", "051-927 1200", "Rawalpindi"},
+        {"District Headquarters Hospital", "051-555 6505", "Muridke, Rawalpindi"}
+    };
+
+    int choice;
+    char repeat;
+
+    do {
+        cout << BOLD << CYAN << "\n--- City-Based Hospital Details ---\n" << RESET;
+        cout << GREEN << "1. Hyderabad\n" << RESET;
+        cout << GREEN << "2. Karachi\n" << RESET;
+        cout << GREEN << "3. Lahore\n" << RESET;
+        cout << GREEN << "4. Islamabad\n" << RESET;
+        cout << GREEN << "5. Rawalpindi\n" << RESET;
+        cout << YELLOW << "6. Exit\n" << RESET;
+        cout << BOLD << "Enter your choice (1-6): " << RESET;
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                displayHospitals("Hyderabad", hyderabadHospitals);
+                break;
+            case 2:
+                displayHospitals("Karachi", karachiHospitals);
+                break;
+            case 3:
+                displayHospitals("Lahore", lahoreHospitals);
+                break;
+            case 4:
+                displayHospitals("Islamabad", islamabadHospitals);
+                break;
+            case 5:
+                displayHospitals("Rawalpindi", rawalpindiHospitals);
+                break;
+            case 6:
+                cout << BOLD << YELLOW << "Exiting...\n" << RESET;
+                return 0;
+            default:
+                cout << BOLD << YELLOW << "Invalid choice! Please try again.\n" << RESET;
+        }
+
+        cout << BOLD << CYAN << "\nDo you want to search for another city? (y/n): " << RESET;
+        cin >> repeat;
+    } while (repeat == 'y' || repeat == 'Y');
+
+    cout << BOLD << GREEN << "Thank you for using the program!\n" << RESET;
+    return 0;
+}
